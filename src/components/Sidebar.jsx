@@ -42,8 +42,11 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
           <Grid size={22} />
         </button>
-        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
-          <Settings size={22} />
+        <button 
+          onClick={() => setActiveTab && setActiveTab('settings')}
+          className={`p-3 rounded-xl transition-all ${activeTab === 'settings' ? 'bg-white text-black shadow-sm scale-105' : 'text-gray-500 hover:text-white'}`}
+        >
+          <Settings size={22} className={activeTab === 'settings' ? 'fill-current' : ''} />
         </button>
       </nav>
       

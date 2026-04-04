@@ -8,6 +8,7 @@ import SpendingChart from './components/SpendingChart';
 import InvoicesList from './components/InvoicesList';
 import ListPage from './components/ListPage';
 import ActivityPage from './components/ActivityPage';
+import SettingsPage from './components/SettingsPage';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -51,6 +52,8 @@ const App = () => {
             <ListPage />
           ) : activeTab === 'activity' ? (
             <ActivityPage />
+          ) : activeTab === 'settings' ? (
+            <SettingsPage />
           ) : null}
         </main>
       </div>
