@@ -4,9 +4,9 @@ import {
   Clock, Grid, Settings, LogOut
 } from 'lucide-react';
 
-const Sidebar = () => {
+const Sidebar = ({ activeTab, setActiveTab }) => {
   return (
-    <aside className="w-20 lg:w-24 bg-[#1f2125] border-r border-gray-800 flex flex-col items-center py-6 rounded-l-3xl h-full shadow-lg h-full transition-all">
+    <aside className="w-20 lg:w-24 bg-[#1f2125] border-r border-gray-800 flex flex-col items-center py-6 rounded-l-3xl h-full shadow-lg transition-all">
       <div className="mb-12 cursor-pointer">
         {/* Logo Placeholder */}
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gray-700 to-black flex items-center justify-center">
@@ -15,33 +15,39 @@ const Sidebar = () => {
       </div>
       
       <nav className="flex-1 w-full space-y-6 flex flex-col items-center">
-        <a href="#" className="p-3 bg-white text-black rounded-xl shadow-sm transition-transform hover:scale-105">
-          <Home size={22} className="fill-current" />
-        </a>
-        <a href="#" className="p-3 text-gray-500 hover:text-white transition-colors">
-          <List size={22} />
-        </a>
-        <a href="#" className="p-3 text-gray-500 hover:text-white transition-colors">
+        <button 
+          onClick={() => setActiveTab && setActiveTab('home')}
+          className={`p-3 rounded-xl transition-all ${activeTab === 'home' ? 'bg-white text-black shadow-sm scale-105' : 'text-gray-500 hover:text-white'}`}
+        >
+          <Home size={22} className={activeTab === 'home' ? 'fill-current' : ''} />
+        </button>
+        <button 
+          onClick={() => setActiveTab && setActiveTab('list')}
+          className={`p-3 rounded-xl transition-all ${activeTab === 'list' ? 'bg-white text-black shadow-sm scale-105' : 'text-gray-500 hover:text-white'}`}
+        >
+          <List size={22} className={activeTab === 'list' ? 'fill-current' : ''} />
+        </button>
+        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
           <Activity size={22} />
-        </a>
-        <a href="#" className="p-3 text-gray-500 hover:text-white transition-colors">
+        </button>
+        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
           <FileText size={22} />
-        </a>
-        <a href="#" className="p-3 text-gray-500 hover:text-white transition-colors">
+        </button>
+        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
           <Clock size={22} />
-        </a>
-        <a href="#" className="p-3 text-gray-500 hover:text-white transition-colors">
+        </button>
+        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
           <Grid size={22} />
-        </a>
-        <a href="#" className="p-3 text-gray-500 hover:text-white transition-colors">
+        </button>
+        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
           <Settings size={22} />
-        </a>
+        </button>
       </nav>
       
       <div className="mt-auto">
-        <a href="#" className="p-3 text-gray-500 hover:text-white transition-colors block">
+        <button className="p-3 text-gray-500 hover:text-red-400 transition-colors block rounded-xl">
           <LogOut size={22} />
-        </a>
+        </button>
       </div>
     </aside>
   );
