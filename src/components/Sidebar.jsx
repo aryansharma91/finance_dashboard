@@ -33,14 +33,23 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         >
           <Activity size={22} className={activeTab === 'activity' ? 'fill-current' : ''} />
         </button>
-        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
-          <FileText size={22} />
+        <button 
+          onClick={() => setActiveTab && setActiveTab('reports')}
+          className={`p-3 rounded-xl transition-all ${activeTab === 'reports' ? 'bg-white text-black shadow-sm scale-105' : 'text-gray-500 hover:text-white'}`}
+        >
+          <FileText size={22} className={activeTab === 'reports' ? 'fill-current' : ''} />
         </button>
-        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
-          <Clock size={22} />
+        <button 
+          onClick={() => setActiveTab && setActiveTab('schedule')}
+          className={`p-3 rounded-xl transition-all ${activeTab === 'schedule' ? 'bg-white text-black shadow-sm scale-105' : 'text-gray-500 hover:text-white'}`}
+        >
+          <Clock size={22} className={activeTab === 'schedule' ? 'fill-current' : ''} />
         </button>
-        <button className="p-3 text-gray-500 hover:text-white transition-colors rounded-xl">
-          <Grid size={22} />
+        <button 
+          onClick={() => setActiveTab && setActiveTab('projects')}
+          className={`p-3 rounded-xl transition-all ${activeTab === 'projects' ? 'bg-white text-black shadow-sm scale-105' : 'text-gray-500 hover:text-white'}`}
+        >
+          <Grid size={22} className={activeTab === 'projects' ? 'fill-current' : ''} />
         </button>
         <button 
           onClick={() => setActiveTab && setActiveTab('settings')}

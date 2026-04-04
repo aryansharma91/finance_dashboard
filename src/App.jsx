@@ -9,6 +9,9 @@ import InvoicesList from './components/InvoicesList';
 import ListPage from './components/ListPage';
 import ActivityPage from './components/ActivityPage';
 import SettingsPage from './components/SettingsPage';
+import ReportsPage from './components/ReportsPage';
+import SchedulePage from './components/SchedulePage';
+import ProjectsPage from './components/ProjectsPage';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -52,6 +55,12 @@ const App = () => {
             <ListPage />
           ) : activeTab === 'activity' ? (
             <ActivityPage />
+          ) : activeTab === 'reports' ? (
+            <ReportsPage />
+          ) : activeTab === 'schedule' ? (
+            <SchedulePage />
+          ) : activeTab === 'projects' ? (
+            <ProjectsPage />
           ) : activeTab === 'settings' ? (
             <SettingsPage />
           ) : null}
