@@ -7,6 +7,7 @@ import AISummary from './components/AISummary';
 import SpendingChart from './components/SpendingChart';
 import InvoicesList from './components/InvoicesList';
 import ListPage from './components/ListPage';
+import ActivityPage from './components/ActivityPage';
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('home');
@@ -48,6 +49,8 @@ const App = () => {
             </div>
           ) : activeTab === 'list' ? (
             <ListPage />
+          ) : activeTab === 'activity' ? (
+            <ActivityPage />
           ) : null}
         </main>
       </div>
