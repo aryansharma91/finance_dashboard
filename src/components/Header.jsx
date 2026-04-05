@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Search, Bell } from 'lucide-react';
 
 const Header = () => {
+  const [hasNotifications, setHasNotifications] = useState(true);
+
   return (
     <header className="flex justify-between items-center py-4 mb-6">
       <h1 className="text-3xl font-semibold text-white tracking-wide">Overview</h1>
@@ -17,16 +19,23 @@ const Header = () => {
         </div>
         
         <div className="flex items-center space-x-3 cursor-pointer p-1.5 pl-2 pr-4 rounded-full bg-[#181a1f] hover:bg-[#202227] transition-colors border border-gray-800">
-          <img src="https://ui-avatars.com/api/?name=Emma+Parson&background=random" alt="Emma Parson" className="w-8 h-8 rounded-full" />
+          <div className="w-8 h-8 rounded-full bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold ring-2 ring-[#2a2d33]">
+             AS
+          </div>
           <div className="text-sm">
-            <p className="text-white font-medium text-xs">Emma Parson</p>
-            <p className="text-gray-500 text-[10px]">emma.pars@gmail.com</p>
+            <p className="text-white font-medium text-xs">Aryan Sharma</p>
+            <p className="text-gray-500 text-[10px]">aryan.sharma@example.com</p>
           </div>
         </div>
         
-        <button className="p-2.5 rounded-full bg-[#2a2d33] hover:bg-gray-700 transition-colors text-white relative">
+        <button 
+          onClick={() => setHasNotifications(false)}
+          className="p-2.5 rounded-full bg-[#2a2d33] hover:bg-gray-700 transition-colors text-white relative"
+        >
           <Bell size={18} />
-          <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-[#2a2d33]"></span>
+          {hasNotifications && (
+            <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border border-[#2a2d33]"></span>
+          )}
         </button>
       </div>
     </header>

@@ -23,47 +23,49 @@ const App = () => {
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
         
         {/* Main Content Areas */}
-        <main className="flex-1 flex flex-col p-8 overflow-y-auto w-full h-screen custom-scrollbar">
+        <main className="flex-1 flex flex-col p-6 lg:p-8 overflow-hidden w-full h-full relative">
           <Header />
           
-          {activeTab === 'home' ? (
-            <div className="flex-1 flex flex-col gap-6">
-              {/* Top Row Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-[400px]">
-                <div className="lg:col-span-2">
-                  <RevenueChart />
+          <div className="flex-1 overflow-y-auto custom-scrollbar mt-6 pt-2 pb-10 pr-2">
+            {activeTab === 'home' ? (
+              <div className="flex flex-col gap-6">
+                {/* Top Row Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-[400px]">
+                  <div className="lg:col-span-2">
+                    <RevenueChart />
+                  </div>
+                  <div className="lg:col-span-1">
+                    <CalendarWidget />
+                  </div>
                 </div>
-                <div className="lg:col-span-1">
-                  <CalendarWidget />
+                
+                {/* Bottom Row Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-[350px]">
+                  <div className="lg:col-span-1">
+                    <AISummary />
+                  </div>
+                  <div className="lg:col-span-1">
+                    <SpendingChart />
+                  </div>
+                  <div className="lg:col-span-1">
+                    <InvoicesList />
+                  </div>
                 </div>
               </div>
-              
-              {/* Bottom Row Grid */}
-              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 min-h-[350px]">
-                <div className="lg:col-span-1">
-                  <AISummary />
-                </div>
-                <div className="lg:col-span-1">
-                  <SpendingChart />
-                </div>
-                <div className="lg:col-span-1">
-                  <InvoicesList />
-                </div>
-              </div>
-            </div>
-          ) : activeTab === 'list' ? (
-            <ListPage />
-          ) : activeTab === 'activity' ? (
-            <ActivityPage />
-          ) : activeTab === 'reports' ? (
-            <ReportsPage />
-          ) : activeTab === 'schedule' ? (
-            <SchedulePage />
-          ) : activeTab === 'projects' ? (
-            <ProjectsPage />
-          ) : activeTab === 'settings' ? (
-            <SettingsPage />
-          ) : null}
+            ) : activeTab === 'list' ? (
+              <ListPage />
+            ) : activeTab === 'activity' ? (
+              <ActivityPage />
+            ) : activeTab === 'reports' ? (
+              <ReportsPage />
+            ) : activeTab === 'schedule' ? (
+              <SchedulePage />
+            ) : activeTab === 'projects' ? (
+              <ProjectsPage />
+            ) : activeTab === 'settings' ? (
+              <SettingsPage />
+            ) : null}
+          </div>
         </main>
       </div>
     </div>

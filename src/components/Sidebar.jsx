@@ -14,7 +14,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
         </div>
       </div>
       
-      <nav className="flex-1 w-full space-y-6 flex flex-col items-center">
+      <nav className="flex-1 w-full space-y-6 flex flex-col items-center overflow-y-auto custom-scrollbar py-2">
         <button 
           onClick={() => setActiveTab && setActiveTab('home')}
           className={`p-3 rounded-xl transition-all ${activeTab === 'home' ? 'bg-white text-black shadow-sm scale-105' : 'text-gray-500 hover:text-white'}`}

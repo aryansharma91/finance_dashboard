@@ -10,7 +10,7 @@ const portfolios = [
 
 const ProjectsPage = () => {
   return (
-    <div className="flex-1 flex flex-col gap-6 w-full h-full overflow-y-auto">
+    <div className="flex flex-col gap-6 w-full">
       <div className="flex justify-between items-center bg-[#1a1b20] p-6 rounded-3xl border border-gray-800/60 shadow-lg gap-4">
         <div>
           <h2 className="text-2xl font-semibold text-white">Portfolios & Projects</h2>
@@ -18,7 +18,7 @@ const ProjectsPage = () => {
         </div>
       </div>
 
-      <div className="bg-[#1a1b20] rounded-3xl border border-gray-800/60 shadow-lg flex-1 p-6 lg:p-8 flex flex-col">
+      <div className="bg-[#1a1b20] rounded-3xl border border-gray-800/60 shadow-lg p-6 lg:p-8 flex flex-col">
         <h3 className="text-lg font-medium text-white mb-6">Active Portfolios</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           {portfolios.map(port => (

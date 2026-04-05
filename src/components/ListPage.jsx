@@ -16,14 +16,27 @@ const mockTransactions = [
 
 const ListPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const filteredTransactions = mockTransactions.filter(tx => 
     tx.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
     tx.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const totalPages = Math.ceil(filteredTransactions.length / itemsPerPage);
+  const currentTransactions = filteredTransactions.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  // Reset to page 1 if search changes
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
   return (
-    <div className="flex-1 flex flex-col gap-6 w-full h-full">
+    <div className="flex flex-col gap-6 w-full">
       {/* Header Area */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-[#1a1b20] p-6 rounded-3xl border border-gray-800/60 shadow-lg gap-4">
         <div>
@@ -50,8 +63,8 @@ const ListPage = () => {
       </div>
       
       {/* Table Area */}
-      <div className="bg-[#1a1b20] rounded-3xl border border-gray-800/60 shadow-lg overflow-hidden flex-1 flex flex-col">
-        <div className="overflow-x-auto flex-1">
+      <div className="bg-[#1a1b20] rounded-3xl border border-gray-800/60 shadow-lg overflow-hidden flex flex-col">
+        <div className="overflow-x-auto w-full">
           <table className="w-full text-left border-collapse whitespace-nowrap">
             <thead>
               <tr className="border-b border-gray-800/60 bg-[#131418]/50">
@@ -64,11 +77,11 @@ const ListPage = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-800/60">
-              {filteredTransactions.map(tx => (
+              {currentTransactions.map(tx => (
                 <tr key={tx.id} className="hover:bg-white/2 transition-colors group">
                   <td className="p-5">
                     <div className="flex items-center gap-3">
-                      <div className={`p-2.5 rounded-xl ${tx.type === 'income' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
+                       <div className={`p-2.5 rounded-xl ${tx.type === 'income' ? 'bg-green-500/10 text-green-500' : 'bg-red-500/10 text-red-500'}`}>
                         {tx.type === 'income' ? <ArrowDownRight size={18} /> : <ArrowUpRight size={18} />}
                       </div>
                       <span className="text-white font-medium">{tx.name}</span>
@@ -82,7 +95,7 @@ const ListPage = () => {
                   </td>
                   <td className="p-5">
                     <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${tx.status === 'completed' ? 'bg-green-500 saturate-150' : 'bg-yellow-500 saturate-150'}`}></div>
+                       <div className={`w-2 h-2 rounded-full ${tx.status === 'completed' ? 'bg-green-500 saturate-150' : 'bg-yellow-500 saturate-150'}`}></div>
                       <span className="text-gray-300 text-sm capitalize">{tx.status}</span>
                     </div>
                   </td>
@@ -97,9 +110,9 @@ const ListPage = () => {
                 </tr>
               ))}
               
-              {filteredTransactions.length === 0 && (
+              {currentTransactions.length === 0 && (
                 <tr>
-                  <td colSpan="6" className="p-8 text-center text-gray-500">
+                   <td colSpan="6" className="p-8 text-center text-gray-500">
                     No transactions found matching your search.
                   </td>
                 </tr>
@@ -110,10 +123,24 @@ const ListPage = () => {
         
         {/* Pagination Footer */}
         <div className="border-t border-gray-800/60 p-4 bg-[#131418]/30 flex justify-between items-center text-sm">
-          <span className="text-gray-500">Showing {filteredTransactions.length} of {mockTransactions.length} results</span>
+          <span className="text-gray-500">
+             Showing {currentTransactions.length > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} to {Math.min(currentPage * itemsPerPage, filteredTransactions.length)} of {filteredTransactions.length} results
+          </span>
           <div className="flex gap-2">
-            <button className="px-3 py-1.5 bg-[#1a1b20] border border-gray-800 rounded-lg text-gray-400 hover:text-white hover:border-gray-600 transition-colors disabled:opacity-50" disabled>Previous</button>
-            <button className="px-3 py-1.5 bg-[#1a1b20] border border-gray-800 rounded-lg text-gray-400 hover:text-white hover:border-gray-600 transition-colors">Next</button>
+            <button 
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="px-3 py-1.5 bg-[#1a1b20] border border-gray-800 rounded-lg text-gray-400 hover:text-white hover:border-gray-600 transition-colors disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button 
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages || totalPages === 0}
+              className="px-3 py-1.5 bg-[#1a1b20] border border-gray-800 rounded-lg text-gray-400 hover:text-white hover:border-gray-600 transition-colors disabled:opacity-50"
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>

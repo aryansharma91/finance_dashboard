@@ -75,7 +75,7 @@ const mockActivities = [
 
 const ActivityPage = () => {
   return (
-    <div className="flex-1 flex flex-col gap-6 w-full h-full">
+    <div className="flex flex-col gap-6 w-full">
       {/* Header Area */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center bg-[#1a1b20] p-6 rounded-3xl border border-gray-800/60 shadow-lg gap-4">
         <div>
@@ -85,7 +85,7 @@ const ActivityPage = () => {
       </div>
       
       {/* Feed Area */}
-      <div className="bg-[#1a1b20] rounded-3xl border border-gray-800/60 shadow-lg flex-1 overflow-y-auto p-6 lg:p-8 custom-scrollbar">
+      <div className="bg-[#1a1b20] rounded-3xl border border-gray-800/60 shadow-lg p-6 lg:p-8">
         <div className="max-w-3xl mx-auto relative px-4">
           {/* Vertical Timeline Line */}
           <div className="absolute left-[2.35rem] top-4 bottom-4 w-px bg-gray-800/60 hidden sm:block"></div>
